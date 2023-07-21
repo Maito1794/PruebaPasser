@@ -6,9 +6,9 @@ const { postgresql } = require('../databases/postgresql')
  * @param {string} name User name
  * @returns {{pk_user: 1, name: "Juan"}}
  */
-const createUser = (pk_user, name) => {
+const createUser = async (pk_user, name) => {
     try {
-        let user = postgresql.public.one(`insert into users values ('${pk_user}', '${name}', status) returning *;`);
+        let user = await postgresql.public.one(`insert into users values (${pk_user}, '${name}', true) returning *;`);
         return user
     }
     catch (e) {
@@ -34,7 +34,7 @@ const updateUser = (pk_user, name) => {
  */
 const getUser = (pk_user) => {
 
-    let user = postgresql.public.one(`select * from users where pk_user = '${pk_user}'`);
+    let user = postgresql.public.one(`select * from users where pk_user = ${pk_user}`);
     return user
 }
 

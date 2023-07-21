@@ -15,7 +15,7 @@ const getUser = async (req, res, next) => {
 const createUser = async (req, res, next) => {
     const { pk_user, name } = req.body
     try {
-        let user = users.createUser(pk_user, name)
+        let user = await users.createUser(pk_user, name)
         res.status(200).send(user)
         next()
     } catch (e) {
