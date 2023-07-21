@@ -12,4 +12,17 @@ describe('users main functions', () => {
         let user = await users.getUser(123)
         expect(user.pk_user).toBe(123);
     });
+
+    // updateUser function test
+    test('updateUser with {pk_user: 123, name: "Mauricio", status: false}', async () => {
+        let user = await users.updateUser(123, "Mauricio", false)
+        expect(user.name).toBe("Mauricio");
+        expect(user.status).toBe(false);
+    });
+
+    // deleteUser function test
+    test('deleteUser with {pj_user: 123}', async () => {
+        let user = await users.deleteUser(123)
+        expect(user.pk_user).toBe(123);
+    })
 })
