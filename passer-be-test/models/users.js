@@ -4,7 +4,7 @@ const { postgresql } = require('../databases/postgresql')
  * Get an specific user
  * @param {number} pk_user User primary key
  * @param {string} name User name
- * @returns {{pk_user: 1, name: "Juan"}}
+ * @returns {{pk_user: 1, name: "Juan"}} User schema
  */
 const createUser = async (pk_user, name) => {
     try {
@@ -20,11 +20,17 @@ const createUser = async (pk_user, name) => {
  * Update an specific user
  * @param {number} pk_user User primary key
  * @param {string} name User name
- * @returns {{pk_user: 1, name: "Juan"}}
+ * @param {boolean} status User status
+ * @returns {{pk_user: 1, name: "Juan"}} User schema
  */
-const updateUser = (pk_user, name) => {
-
-    throw new Error('Method not implemented.');
+const updateUser = async (pk_user, name, status) => {
+    try {
+        let user = await postgresql.public.one(`update users set name = '${name}', status = ${status} where pk_user = ${pk_user} returning *;`);
+        return user
+    }
+    catch (e) {
+        throw new Error(e)
+    }
 }
 
 /**
@@ -50,5 +56,6 @@ const deleteUser = (pk_user) => {
 
 module.exports = {
     createUser,
-    getUser
+    getUser,
+    updateUser,
 }
