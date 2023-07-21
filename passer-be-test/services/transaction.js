@@ -16,6 +16,20 @@ const createTransaction = async (pk_transaction, fk_user, description, amount) =
     }
 }
 
+/**
+ * Get an specific transaction
+ * @param {number} pk_transaction Transaction primary key
+ * @returns {{pk_transaction: 1, fk_user: 1, description: "Transaction 1", amount: 100}} Transaction schema
+ */
+const getTransaction = async (pk_transaction) => {
+    try {
+        return transactionModel.getTransaction(pk_transaction)
+    } catch (e) {
+        throw new Error(e.message)
+    }
+}
+
 module.exports = {
-    createTransaction
+    createTransaction,
+    getTransaction
 }
