@@ -21,7 +21,7 @@ const getUser = async (pk_user) => {
  */
 const createUser = async (pk_user, name) => {
     try {
-        return usersModel.createUser(pk_user, name)
+        return await usersModel.createUser(pk_user, name)
     } catch (e) {
         throw new Error(e.message)
     }
@@ -34,7 +34,7 @@ const createUser = async (pk_user, name) => {
  */
 const deleteUser = async (pk_user) => {
     try {
-        return usersModel.deleteUser(pk_user)
+        return await usersModel.deleteUser(pk_user)
     } catch (e) {
         throw new Error(e.message)
     }

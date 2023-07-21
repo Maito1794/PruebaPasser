@@ -32,9 +32,9 @@ const updateUser = (pk_user, name) => {
  * @param {number} pk_user User primary key
  * @returns {{pk_user: 1, name: "Juan"}} User schema
  */
-const getUser = (pk_user) => {
+const getUser = async (pk_user) => {
 
-    let user = postgresql.public.one(`select * from users where pk_user = ${pk_user}`);
+    let user = await postgresql.public.one(`select * from users where pk_user = ${pk_user}`);
     return user
 }
 
