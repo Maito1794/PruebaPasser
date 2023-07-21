@@ -45,8 +45,22 @@ const updateTransaction = async (pk_transaction, fk_user, description, amount) =
     }
 }
 
+/**
+ * Get transactions by user
+ * @param {number} fk_user User primary key
+ * @returns {[{pk_transaction: 1, fk_user: 1, description: "Transaction 1", amount: 100}]} Array of transactions
+ */
+const getTransactionsByUser = async (fk_user) => {
+    try {
+        return await transactionModel.getTransactionsByUser(fk_user)
+    } catch (e) {
+        throw new Error(e.message)
+    }
+}
+
 module.exports = {
     createTransaction,
     getTransaction,
-    updateTransaction
+    updateTransaction,
+    getTransactionsByUser
 }
