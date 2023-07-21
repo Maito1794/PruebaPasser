@@ -49,13 +49,19 @@ const getUser = (pk_user) => {
  * @param {number} pk_user User primary key
  * @returns {pk_user: 1} User primary key
  */
-const deleteUser = (pk_user) => {
-
-    throw new Error('Method not implemented.');
+const deleteUser = async (pk_user) => {
+    try {
+        let user = await postgresql.public.one(`delete from users where pk_user = ${pk_user} returning pk_user;`);
+        return user
+    }
+    catch (e) {
+        throw new Error(e)
+    }
 }
 
 module.exports = {
     createUser,
     getUser,
+    deleteUser,
     updateUser,
 }
