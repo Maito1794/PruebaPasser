@@ -23,7 +23,7 @@ const createTransaction = async (pk_transaction, fk_user, description, amount) =
  */
 const getTransaction = async (pk_transaction) => {
     try {
-        return transactionModel.getTransaction(pk_transaction)
+        return await transactionModel.getTransaction(pk_transaction)
     } catch (e) {
         throw new Error(e.message)
     }
